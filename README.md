@@ -14,3 +14,4 @@ Objectives:
 + Support file descriptors (R, W, RW, APPEND)
 + Read and write files by descriptor
 + Support mounting additional disk images within the simulator and crossing mount points
++ Support select classic Linux commands (cd, ls, pwd, cat, etc..)

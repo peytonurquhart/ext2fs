@@ -1,0 +1,73 @@
+Name: Peyton Urquhart   ID: 11622450    (no team member)
+
+
+LEVEL-1: Use disk1                                            55 %
+   COMMANDS                    EXPECTED RESULTS           OBSERVED & comments
+------------------      ------------------------------  ----------------------
+startup & menu:          start up, show commands menu   CORRECT, starts up, enter menu for menu
+
+ls                       show contents of / directory   CORRECT, shows contents
+
+mkdir /a ;     ls        show DIR /a exits; ls works    CORRECT, a exists+works
+
+mkdir /a/b ;   ls /a     make dir with pathname         CORRECT, shows . .. b
+
+cd    /a/b ;   pwd       cd to a pathname, show CWD     CORRECT, pwd shows /a/b
+
+cd    ../../ ; pwd       cd upward, show CWD            CORRECT, back in root pwd=/
+
+creat f1     ; ls        creat file, show f1 is a file  CORRECT, file f1 exists, is file
+
+link  f1 f2;   ls        hard link, both linkCount=2    CORRECT, f2 exists both links count 2
+
+unlink   f1;   ls        unlink f1; f2 linkCount=1      CORRECT, f1 is gone, links count 1
+
+symlink f2 f3; ls        symlink; ls show f3 -> f2      CORRECT, f3 link file and f3=>f2
+
+rmdir /a/b;    ls        rmdir and show results         CORRECT, b is gone
+  
+LEVEL-2: Use disk2: (file1,tiny,small,large,huge)             25 %
+------------------        ---------------------------   -----------------------
+cat large; cat huge       show contents to LAST LINE
+                           === END OF huge FILE ===   CORRECT, files accurate, all bytes print
+
+cp  large newlarge; ls    show they are SAME size     CORRECT, same size file accurate
+
+cp  huge  newhuge ; ls    show they are SAME size     CORRECT, same size file accurate
+
+              MUST DO THIS: exit YOUR project; 
+(In Linux): dif2          MUST not show any lines     CORRECT, no diff
+
+============ IF can not do cat, cp: TRY to do these for LEVEL2 ================
+open  small 0;   pfd      show fd=0 opened for R      n/a
+
+read 0 20;       pfd      show 20 chars read          n/a
+
+open file1 1;    pfd      show fd=1 opened for W      n/a
+
+write 1 "abcde"; ls       show file1 size=5           n/a
+
+close 1; pfd              show fd=1 is closed         n/a
+
+LEVEL-3: start with disk3.1;   MOUNT disk3.2                  20 %
+-------------------   ----------------------------  ----------------------------
+mount disk3.2 /mnt;       mount disk3.2 on /mnt      CORRECT, mount successful
+
+ls /mnt                   contents of disk3.2        CORRECT, shows contents: file1, dir1, dir2, mnt, dev=4
+
+cd /mnt/DIR1; pwd         show CWD is /mnt/DIR1      CORRECT, pwd is /DIR1/ 
+                                                     I intentionally did this so mounted
+                                                     Filesystems work as new root
+                                                     Also, in order to traverse back to the
+                                                     real root you must use ../../ from mounted
+                                                     root. (twice) that way if you are in 
+                                                     mounted system you must intentionally go back.
+
+
+mkdir ABC; ls             show ABC exits             CORRECT, ABC exists in DIR1 dev=4
+
+cd ../../;    pwd         show CWD=/                 CORRECT, ../ to fake root then ../../
+                                                     to cross back mounting points (explained above)
+
+Switch to P1; rmdir dir1; unlink file1 : not owner   Not sure what this is but i think CORRECT
+                                                     will try during demo.

@@ -1,0 +1,12 @@
+rm a.out
+
+cp d2.ori d2
+cp d/disk1.ori d/disk1
+cp d/disk2.ori d/disk2
+cp d/disk3.ori d/disk3
+cp d/disk4.ori d/disk4
+
+cc main.c
+
+
+

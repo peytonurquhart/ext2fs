@@ -1,0 +1,2 @@
+sudo dd if=/dev/zero of=diskimage bs=1024 count=1440
+sudo mkfs -b 1024 diskimage 1440

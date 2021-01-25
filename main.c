@@ -17,7 +17,7 @@
 
 // Disk image file default to "diskimage" unless specified in argv
 //char *disk = "diskimage";
-char *disk = "d2";
+char *disk = "diskimage";
 
 MTABLE mtable[NMTABLE];
 
@@ -230,10 +230,3 @@ int main(int argc, char *argv[ ])
     } 
   }
 }
-
-/*
-      NOTES:
-
-      lvl1 and lvl2 done and optimized
-
-*/
